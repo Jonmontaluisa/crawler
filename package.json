@@ -1,0 +1,45 @@
+{
+  "name": "hn-crawler",
+  "version": "1.0.0",
+  "description": "Clean Architecture Hacker News web crawler with CLI filters and usage logging",
+  "main": "dist/presentation/cli/index.js",
+  "bin": {
+    "hn": "./dist/presentation/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/presentation/cli/index.js",
+    "hn": "ts-node src/presentation/cli/index.ts",
+    "test": "jest",
+    "test:coverage": "jest --coverage --coverageReporters=text",
+    "test:watch": "jest --watch",
+    "lint": "tsc --noEmit",
+    "server": "ts-node src/presentation/http/server.ts"
+  },
+  "keywords": [
+    "hacker-news",
+    "crawler",
+    "clean-architecture",
+    "typescript"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "commander": "^12.1.0",
+    "express": "^4.21.2",
+    "knex": "^3.3.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

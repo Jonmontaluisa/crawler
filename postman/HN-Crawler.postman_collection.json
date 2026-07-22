@@ -1,0 +1,129 @@
+{
+  "info": {
+    "name": "HN Crawler API",
+    "description": "Postman collection for the HN crawler Express endpoints.\n\nStart the server first: `npm run server` (default http://localhost:3000)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health",
+        "description": "Liveness check"
+      }
+    },
+    {
+      "name": "Scrape",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{baseUrl}}/api/scrape",
+        "description": "Fresh scrape from Hacker News and persist a snapshot"
+      }
+    },
+    {
+      "name": "Filter long",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/entries/filter/long",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "entries", "filter", "long"]
+        },
+        "description": "Titles with more than 5 words, ordered by comments descending (uses latest scrape)"
+      }
+    },
+    {
+      "name": "Filter short",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/entries/filter/short",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "entries", "filter", "short"]
+        },
+        "description": "Titles with 5 or fewer words, ordered by points descending (uses latest scrape)"
+      }
+    },
+    {
+      "name": "Filter long (fresh)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/entries/filter/long?fresh=true",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "entries", "filter", "long"],
+          "query": [
+            {
+              "key": "fresh",
+              "value": "true"
+            }
+          ]
+        },
+        "description": "Force a fresh scrape, then apply the long filter"
+      }
+    },
+    {
+      "name": "Filter short (fresh)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/entries/filter/short?fresh=true",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "entries", "filter", "short"],
+          "query": [
+            {
+              "key": "fresh",
+              "value": "true"
+            }
+          ]
+        },
+        "description": "Force a fresh scrape, then apply the short filter"
+      }
+    },
+    {
+      "name": "History",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/history",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "history"]
+        },
+        "description": "Recent usage logs"
+      }
+    },
+    {
+      "name": "History (limit 5)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/history?limit=5",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "history"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        },
+        "description": "Recent usage logs with a custom limit"
+      }
+    }
+  ]
+}
